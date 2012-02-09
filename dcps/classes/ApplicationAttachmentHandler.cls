@@ -26,6 +26,7 @@ global class ApplicationAttachmentHandler implements Messaging.InboundEmailHandl
    			   
  			   result.success = true;
     		   return result;
+    		   // Testing git
       }
       
       static testMethod void handleInboundEmailTest() {
