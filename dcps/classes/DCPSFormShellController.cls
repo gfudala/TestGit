@@ -1,0 +1,32 @@
+public with sharing class DCPSFormShellController {
+	public String formUrl { get; set; }
+	public Integer formPadding { get; set; }
+	
+	public DCPSFormShellController() {
+		String buildFormUrl = '';
+		if (Site.getPrefix() != 'null') {
+			buildFormUrl = '/' + Site.getPrefix();
+		}
+	 	buildFormUrl = '/JSForms__FormInclude?';
+		formPadding = 0;
+		Map<String, String> parmMap = ApexPages.currentPage().getParameters();
+		for (String pageParm : parmMap.keySet()) {
+			if (pageParm == 'formPadding') {
+				formPadding = integer.valueOf(parmMap.get(pageParm));
+			}
+			else {
+				buildFormUrl += pageParm + '=' + parmMap.get(pageParm) +'&';
+			}
+		}
+		formUrl = buildFormUrl;
+	}
+	
+  	public static testMethod void Test_DCPSFormShellController() {
+   		PageReference pageRef = Page.DCPSFormShell;
+        Test.setCurrentPage(pageRef);
+   		ApexPages.currentPage().getParameters().put('formPadding', '100');
+      
+        DCPSFormShellController controller = new DCPSFormShellController();
+  	}	
+
+}
