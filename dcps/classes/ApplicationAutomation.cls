@@ -1,4 +1,5 @@
 global class ApplicationAutomation {
+	//Testing git
     // Returns a dynamic SOQL statement for the whole object, includes only creatable fields since we will be inserting a cloned result of this query
     public static string getCreatableFieldsSOQL(String objectName, String whereClause){
  
